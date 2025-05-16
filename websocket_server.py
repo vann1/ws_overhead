@@ -15,7 +15,7 @@ class WebSocketServer:
                 try:
                     data = json.loads(message)
                     action = data.get("action")
-                    timestamp = data.get("timestamp") # might need time.time()
+                    timestamp = data.get("timestamp", time.time()) 
                 except json.JSONDecodeError:
                     await websocket.send(json.dumps({"error": "Invalid JSON"}))
                     continue
